@@ -1,4 +1,4 @@
-public class Main {
+public class VariablesTheme {
 
     public static void main(String[] args) {
         // ЗАДАЧА № 1
@@ -154,4 +154,5 @@ public class Main {
         int minutes = (totalSeconds - (hours * 3600)) / 60;
         int seconds = (totalSeconds - (hours * 3600)) - minutes * 60;
         System.out.println("Время " + hours + ":" + minutes + ":" + seconds);
+    }
 }
