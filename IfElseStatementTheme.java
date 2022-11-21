@@ -1,5 +1,5 @@
 public class IfElseStatementTheme {
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         System.out.println("№-1 Перевод псевдокода на язык Java");
         int age = 18;
         boolean isMale = true;
