@@ -46,21 +46,21 @@ public class IfElseStatementTheme {
         System.out.println("\n№-3 Проверка числа");
         int srcNum = -24;
 
-        if (srcNum > 0) {
-            if (srcNum % 2 == 0) {
-                System.out.println("Число " + srcNum + " положительное четное");
-            } else {
-                System.out.println("Число " + srcNum + " положительное нечетное");
-            }
-        } else if (srcNum < 0){
-            if (srcNum % 2 == 0) {
-                System.out.println("Число " + srcNum + " отрицательное четное");
-            } else {
-                System.out.println("Число " + srcNum + " отрицательное нечетное");
-            }
+        if (srcNum == 0) {
+            System.out.println("Число является нулем");
         } else {
-            System.out.println("Число является 0");
+            if (srcNum > 0) {
+                System.out.println("Положительное");
+            } else {
+                System.out.println("Отрицательное");
+            }
+            if (srcNum % 2 == 0) {
+                System.out.println("Четное");
+            } else {
+                System.out.println("Нечетное");
+            }
         }
+        System.out.println("Исходное число " + srcNum);
 
         System.out.println("\n№-4 Поиск одинаковых цифр в числах");
         int num3 = 123;
@@ -93,15 +93,15 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n№-6 Подсчет суммы вклада и начисленных банком %");
-        int account = 300_000;
-        double persentSum = 0.0;
+        int account = 100_000;
+        double persentSum = 0.05;
 
-        if (account <= 100_000) {
-            persentSum = account * 0.05;
-        } else if (account > 100_000 && account <= 300_000) {
+        if (account > 100_000 && account <= 300_000) {
             persentSum = account * 0.07;
         } else if (account > 300_000) {
             persentSum = account * 0.1;
+        } else {
+            persentSum *= account;
         }
         System.out.println("Сумма вклада: " + account);
         System.out.println("Начисленный процент: " + persentSum);
@@ -151,19 +151,29 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n№-9 Подсчет количества банкнот");
-        int exchangeSum = 567;
-        int amountDecimalBanknote = 5;
+        int exchangeSum = 1101;
+        int amountHundredBanknotes = 10;
+        int amountDecimalBanknotes = 5;
+        int amountSingleBanknotes = 50;
         int hundred = exchangeSum / 100;
         int decimal = (exchangeSum / 10) % 10;
         int single = exchangeSum % 10;
 
-        if (decimal > amountDecimalBanknote) {
-            single += 10 * (decimal - amountDecimalBanknote);
-            decimal -= (decimal - amountDecimalBanknote);
+        if (hundred > amountHundredBanknotes) {
+            decimal += 10 * (hundred - amountHundredBanknotes);
+            hundred -= (hundred - amountHundredBanknotes);
+        }
+        if (decimal > amountDecimalBanknotes) {
+            single += 10 * (decimal - amountDecimalBanknotes);
+            decimal -= (decimal - amountDecimalBanknotes);
+        }
+        if (single > amountSingleBanknotes) {
+            single = amountSingleBanknotes;
+            System.out.println("Больше нет банкнот");
         }
         exchangeSum = 100 * hundred + 10 * decimal + single;
-        System.out.println("Номиналы банкнот: " + "100USD - " + hundred + 
-                    "; 10USD - " + decimal + "; 1USD - " + single);
+        System.out.println("Номиналы банкнот: " + "100USD - " + hundred +
+                "; 10USD - " + decimal + "; 1USD - " + single);
         System.out.println("Сумма выдачи: " + exchangeSum);
     }
 }
