@@ -1,17 +1,17 @@
 public class CycleTheme {
     public static void main(String[] args) {
         System.out.println("№-1 Подсчет суммы четных и нечетных чисел");
-        int startNum = -10;
+        int counter = -10;
         int evenSum = 0;
         int oddSum = 0;
         do {
-            if (startNum % 2 == 0) {
-                evenSum++;
+            if (counter % 2 == 0) {
+                evenSum += counter;
             } else {
-                oddSum++;
+                oddSum += counter;
             }
-            startNum++;
-        } while (startNum <= 21);
+            counter++;
+        } while (counter <= 21);
         System.out.println("в промежутке [-10, 21] сумма четных чисел = " + evenSum + ", а нечетных = " + oddSum);
 
         System.out.println("\n№-2 Вывод чисел в интервале (min и max) в порядке убывания");
@@ -36,24 +36,24 @@ public class CycleTheme {
         for (int i = min + 1; i < max; i++) {
             System.out.printf("%2d", i);
         }
+        System.out.println();
 
-        System.out.println("\n №-3 Вывод реверсивного числа и суммы его цифр");
+        System.out.println("\n№-3 Вывод реверсивного числа и суммы его цифр");
         int someNum = 1234;
+        int lastDigit;
         int sum = 0;
         int reverseNum = 0;
         while (someNum > 0) {
-            reverseNum = reverseNum * 10 + someNum % 10;
-            sum += someNum % 10;
+            lastDigit = someNum % 10;
+            reverseNum = reverseNum * 10 + lastDigit;
+            sum += lastDigit;
             someNum /= 10;
         }
         System.out.println("Исходное число в обратном порядке: " + reverseNum);
         System.out.println("Сумма цифр: " + sum);
 
-        System.out.println("\n №-4 Вывод чисел на консоль в несколько строк");
-        min = 1;
-        max = 24;
-
-        for (int i = min; i < max; i += 2) {
+        System.out.println("\n№-4 Вывод чисел на консоль в несколько строк");
+        for (int i = 1; i < 24; i += 2) {
             for (int j = 0; j < 5; j++) {
                 if (i < 24) {
                     System.out.printf("%4d", i);
@@ -66,24 +66,24 @@ public class CycleTheme {
             System.out.println();
         }
 
-        System.out.println("\n №-5 Проверка количества двоек на четность");
-        someNum = 3242592;
-        sum = 0;
-        int resourseNum = someNum;
-        String isSumEven = "четное";
+        System.out.println("\n№-5 Проверка количества двоек на четность");
+        someNum = 32425922;
+        int countTwos = 0;
+        int copySomeNum = someNum;
 
-        while(resourseNum > 0) {
-            if (resourseNum % 10 == 2) {
-                sum++;
+        while(copySomeNum > 0) {
+            if (copySomeNum % 10 == 2) {
+                countTwos++;
             }
-            resourseNum /= 10;
+            copySomeNum /= 10;
         }
-        if (sum % 2 != 0) {
+        String isSumEven = "четное";
+        if (countTwos % 2 != 0) {
             isSumEven = "нечетное";
         }
         System.out.println("Число " + someNum + " содержит " + isSumEven + " количество двоек");
 
-        System.out.println("\n №-6 Отображение фигур в консоли");
+        System.out.println("\n№-6 Отображение фигур в консоли");
         System.out.println("Для прямоугольника только for");
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
@@ -132,13 +132,13 @@ public class CycleTheme {
             System.out.printf("%6c%n", (char) i);
         }
 
-        System.out.println("\n №-8 Проверка, является ли число палиндромом");
+        System.out.println("\n№-8 Проверка, является ли число палиндромом");
         someNum = 1234321;
         reverseNum = 0;
-        int tempNum = someNum;
-        while (tempNum > 0) {
-            reverseNum = reverseNum * 10 + tempNum % 10;
-            tempNum /= 10;
+        copySomeNum = someNum;
+        while (copySomeNum > 0) {
+            reverseNum = reverseNum * 10 + copySomeNum % 10;
+            copySomeNum /= 10;
         }
         if (reverseNum == someNum) {
             System.out.println("Число: " + reverseNum + " палиндром");
