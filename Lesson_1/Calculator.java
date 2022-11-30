@@ -1,6 +1,6 @@
 public class Calculator {
     public static void main(String[] args) {
-        char sign = '/';
+        char sign = '*';
         double firstNum = 5;
         double secondNum = 0;
         double result = 1;
