@@ -12,11 +12,10 @@ public class Calculator {
         } else if (sign == '*') {
             result = firstNum * secondNum;
         } else if (sign == '/') {
+            result = firstNum / secondNum;
             if (secondNum == 0) {
                 System.out.println("Деление на ноль невозможно");
                 return;
-            } else {
-                result = firstNum / secondNum;
             }
         } else if (sign == '^') {
             for (int i = 1; i <= secondNum; i++) {
