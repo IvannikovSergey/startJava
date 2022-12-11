@@ -67,7 +67,7 @@ class Wolf {
         System.out.println("Воет");
     }
 
-    public void hunting() {
+    public void hunt() {
         System.out.println("Охотиться");
     }
 }
