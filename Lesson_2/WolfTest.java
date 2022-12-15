@@ -9,7 +9,8 @@ public class WolfTest {
         wolf.setAge(13);
         wolf.setBodyColor("серый");
 
-        System.out.println("Пол волка: " + wolf.getSex() + "\nКличка: " + wolf.getNickName() + "\nВес: " + wolf.getWeight() +
+        System.out.println("Пол волка: " + wolf.getSex() + "\nКличка: " +
+                wolf.getNickName() + "\nВес: " + wolf.getWeight() +
                 "\nВозраст: " + wolf.getAge() + "\nЦвет: " + wolf.getBodyColor());
         wolf.go();
         wolf.sit();
