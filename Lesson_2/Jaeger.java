@@ -6,6 +6,20 @@ public class Jaeger {
     private float weight;
     private float height;
 
+    public Jaeger() {
+
+    }
+
+    public Jaeger(String modelName, String mark, String status,
+                  String bodyLanguage, float weight, float height) {
+        this.modelName = modelName;
+        this.mark = mark;
+        this.status = status;
+        this.bodyLanguage = bodyLanguage;
+        this.weight = weight;
+        this.height = height;
+    }
+
     public String getModelName() {
         return modelName;
     }
@@ -70,30 +84,17 @@ public class Jaeger {
         }
     }
 
-    public Jaeger() {
-
-    }
-
-    public Jaeger(String modelName, String mark, String status, String bodyLanguage, float weight, float height) {
-        this.modelName = modelName;
-        this.mark = mark;
-        this.status = status;
-        this.bodyLanguage = bodyLanguage;
-        this.weight = weight;
-        this.height = height;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Model name: %s \nMark: %s \nStatus: %s \nBody Language: %s " +
-                "\nWeight: %f \nHeight: %f \n", modelName, mark, status, bodyLanguage, weight, height);
-    }
-
     public String move() {
         return "moving";
     }
 
     public String fire() {
         return "firing";
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Model name: %s \nMark: %s \nStatus: %s \nBody Language: %s " +
+                "\nWeight: %f \nHeight: %f \n", modelName, mark, status, bodyLanguage, weight, height);
     }
 }

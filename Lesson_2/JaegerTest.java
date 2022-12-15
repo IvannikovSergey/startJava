@@ -1,9 +1,6 @@
 class JaegerTest {
     public static void main(String[] args) {
         Jaeger jaegerOne = new Jaeger();
-        Jaeger jaegerTwo = new Jaeger("Bracer Phoenix", "Mark-5", "Destroyed",
-                "Mobile Artillery", 2.128f, 70.91f);
-
         jaegerOne.setModelName("Guardian Bravo");
         jaegerOne.setMark("Mark-6");
         jaegerOne.setStatus("Active");
@@ -15,6 +12,8 @@ class JaegerTest {
         jaegerOne.fire();
 
         System.out.println(jaegerOne);
+        Jaeger jaegerTwo = new Jaeger("Bracer Phoenix", "Mark-5", "Destroyed",
+                "Mobile Artillery", 2.128f, 70.91f);
         System.out.println(jaegerTwo);
         System.out.println(jaegerOne.getModelName() + " " + jaegerOne.move());
         System.out.println(jaegerOne.getModelName() + " " + jaegerOne.fire());
@@ -22,9 +21,8 @@ class JaegerTest {
         System.out.println(jaegerTwo.getModelName() + " " + jaegerTwo.fire());
         jaegerOne.setStatus("Destroyed");
         System.out.println(jaegerOne.getModelName() + " " + jaegerOne.getStatus());
-        System.out.println("");
+        System.out.println();
         jaegerTwo.setModelName("AAAAAAAAA");
         System.out.println(jaegerTwo);
-
     }
 }
