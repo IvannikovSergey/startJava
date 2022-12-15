@@ -6,12 +6,10 @@ public class Jaeger {
     private float weight;
     private float height;
 
-    public Jaeger() {
-
-    }
+    public Jaeger() {}
 
     public Jaeger(String modelName, String mark, String status,
-                  String bodyLanguage, float weight, float height) {
+        String bodyLanguage, float weight, float height) {
         this.modelName = modelName;
         this.mark = mark;
         this.status = status;
