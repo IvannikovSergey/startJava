@@ -10,11 +10,10 @@ class GuessNumberTest {
         while (answer.equals("yes")) {
             GuessNumber game = new GuessNumber(player1, player2);
             game.start();
-            boolean options = false;
-            while (!options) {
+            answer = "";
+            while (!answer.equals("yes") && !answer.equals("no")) {
                 System.out.println("Хотите продолжить? yes/no");
                 answer = scanner.nextLine();
-                options = (answer.equals("yes") || answer.equals("no"));
             }
         }
         scanner.close();
