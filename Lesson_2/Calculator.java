@@ -1,37 +1,30 @@
 import java.util.Scanner;
 
 public class Calculator {
-    public double calculation(double num1, double num2, char operator) {
-        double result = 1;
+    public double calculate(double num1, double num2, char operator) {
         switch (operator) {
             case '+':
-                result = num1 + num2;
-                break;
+                return num1 + num2;
             case '-':
-                result = num1 - num2;
-                break;
+                return num1 - num2;
             case '*':
-                result = num1 * num2;
-                break;
+                return num1 * num2;
             case '/':
-                result = num1 / num2;
                 if (num2 == 0) {
                     System.out.println("Деление на ноль невозможно");
-                    return result;
                 }
-                break;
+                return num1 / num2;
             case '^':
+                double result = 1;
                 for (int i = 1; i <= num2; i++) {
                     result *= num1;
                 }
-                break;
+                return result;
             case '%':
-                result = num1 % num2;
-                break;
+                return num1 % num2;
             default:
                 System.out.println("Неправильный знак операции");
-                break;
         }
-        return result;
+        return 0.0;
     }
 }

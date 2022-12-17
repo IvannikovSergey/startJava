@@ -11,13 +11,12 @@ class CalculatorTest {
             char sign = scanner.next().charAt(0);
             System.out.println("Введите второе число:");
             double secondNum = scanner.nextDouble();
-            System.out.println("Результат: " + calculator.calculation(firstNum, secondNum, sign));
-            boolean isContinue = false;
-            while (!isContinue) {
-                System.out.println("Хотите продолжить вычисления? [yes/no]");
+            System.out.println("Результат: " + calculator.calculate(firstNum, secondNum, sign));
+            answer = "";
+            while (!answer.equals("yes") && !answer.equals("no")) {
+                System.out.println("Хотите продолжить? yes/no");
                 scanner = new Scanner(System.in);
                 answer = scanner.nextLine();
-                isContinue = (answer.equals("yes") || answer.equals("no"));
             }
         }
         scanner.close();
