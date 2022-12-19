@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -12,12 +14,12 @@ class CalculatorTest {
             System.out.println("Введите второе число:");
             double secondNum = scanner.nextDouble();
             System.out.println("Результат: " + calculator.calculate(firstNum, secondNum, sign));
-            answer = "";
-            while (!answer.equals("yes") && !answer.equals("no")) {
+            do {
                 System.out.println("Хотите продолжить? yes/no");
-                scanner = new Scanner(System.in);
+                scanner.nextLine();
                 answer = scanner.nextLine();
             }
+            while (!answer.equals("yes") && !answer.equals("no"));
         }
         scanner.close();
     }

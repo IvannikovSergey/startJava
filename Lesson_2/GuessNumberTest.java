@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class GuessNumberTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -10,11 +12,11 @@ class GuessNumberTest {
         while (answer.equals("yes")) {
             GuessNumber game = new GuessNumber(player1, player2);
             game.start();
-            answer = "";
-            while (!answer.equals("yes") && !answer.equals("no")) {
+            do {
                 System.out.println("Хотите продолжить? yes/no");
                 answer = scanner.nextLine();
             }
+            while (!answer.equals("yes") && !answer.equals("no"));
         }
         scanner.close();
     }

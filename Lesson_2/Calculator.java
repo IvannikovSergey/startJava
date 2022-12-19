@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Calculator {
     public double calculate(double num1, double num2, char operator) {
         switch (operator) {
@@ -25,6 +23,6 @@ public class Calculator {
             default:
                 System.out.println("Неправильный знак операции");
         }
-        return 0.0;
+        return .0;
     }
 }
