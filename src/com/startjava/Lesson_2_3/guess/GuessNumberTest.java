@@ -1,3 +1,5 @@
+package com.startjava.Lesson_2_3.guess;
+
 import java.util.Scanner;
 
 class GuessNumberTest {
@@ -15,8 +17,7 @@ class GuessNumberTest {
             do {
                 System.out.println("Хотите продолжить? yes/no");
                 answer = scanner.nextLine();
-            }
-            while (!answer.equals("yes") && !answer.equals("no"));
+            } while (!answer.equals("yes") && !answer.equals("no"));
         }
         scanner.close();
     }

@@ -1,7 +1,7 @@
+package com.startjava.Lesson_1.base;
+
 public class VariablesTheme {
-
     public static void main(String[] args) {
-
         System.out.println("№-1 Вывод значений переменных на консоль");
         byte cores = 4;
         short threads = 8;

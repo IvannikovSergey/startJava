@@ -1,3 +1,5 @@
+package com.startjava.Lesson_2_3.calculator;
+
 public class Calculator {
     public double calculate(double num1, double num2, char operator) {
         switch (operator) {
