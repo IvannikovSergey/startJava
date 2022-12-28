@@ -5,57 +5,45 @@ public class ArrayTheme {
         System.out.println("№ - 1 Реверс значений массива");
         int[] intArr = {2, 7, 5, 6, 3, 1, 4};
         int length = intArr.length;
-        for (int numbers : intArr) {
-            System.out.print(numbers + " ");
+        int[] reversIntArr = new int[length];
+        for (int i = 0; i < length; i++) {
+            reversIntArr[length - 1 - i] = intArr[i];
         }
-        System.out.println();
-        for (int i = length - 1; i >= 0; i--) {
-            System.out.print(intArr[i] + " ");
-        }
-        System.out.println();
+        printIntArray(intArr);
+        printIntArray(reversIntArr);
 
         System.out.println("\n№ - 2 Вывод произведения элементов массива");
         intArr = new int[10];
         length = intArr.length;
-        int result = 1;
+        int multResult = 1;
         for (int i = 0; i < length; i++) {
             intArr[i] = i;
             if (intArr[i] == 0 || intArr[i] == 9) {
                 continue;
             }
-            result *= intArr[i];
-            System.out.print(intArr[i] == 8 ? intArr[i] + " = " + result : intArr[i] + " * ");
+            multResult *= intArr[i];
+            String sign = intArr[i] != 8 ? " * " : " = " + multResult;
+            System.out.print(intArr[i] + sign);
         }
-        System.out.println();
-        System.out.print(intArr[0] + " " + intArr[length - 1]);
-        System.out.println();
+        System.out.print("\n" + intArr[0] + " " + intArr[length - 1] + "\n");
 
         System.out.println("\n№ - 3 Удаление элементов массива");
         double[] doubleArr = new double[15];
-        int halfArrIndex = doubleArr.length;
-        double[] doubleArrCopy = new double[halfArrIndex];
-        int counter = 0;
-        for (int i = 0; i < doubleArr.length; i++) {
+        length = doubleArr.length;
+        int changedCellCounter = 0;
+        for (int i = 0; i < length; i++) {
             doubleArr[i] = Math.random();
-            doubleArrCopy[i] = doubleArr[i];
-            System.out.printf("%1.3f ", doubleArr[i]);
-            if (i == halfArrIndex / 2) {
-                System.out.println();
+        }
+        printDoubleArray(doubleArr);
+        for (int i = 0; i < length; i++) {
+            double centerNumber = doubleArr[length / 2];
+            if (doubleArr[i] > centerNumber) {
+                doubleArr[i] = centerNumber;
+                changedCellCounter++;
             }
         }
-        System.out.println();
-        for (int i = 0; i < doubleArrCopy.length; i++) {
-            double centerNumber = doubleArr[halfArrIndex / 2];
-            if (doubleArrCopy[i] > centerNumber) {
-                doubleArrCopy[i] = centerNumber;
-                counter++;
-            }
-            System.out.printf("%.3f ", doubleArrCopy[i]);
-            if (i == doubleArrCopy.length / 2) {
-                System.out.println();
-            }
-        }
-        System.out.println("\nКоличество замененных ячеек: " + counter);
+        printDoubleArray(doubleArr);
+        System.out.println("\nКоличество замененных ячеек: " + changedCellCounter);
 
         System.out.println("\n№ - 4 Вывод элементов массива лесенкой в обратном порядке");
         char[] charsArr = new char[26];
@@ -135,11 +123,11 @@ public class ArrayTheme {
     }
 
     public static void printIntArray(int[] arr) {
-        System.out.print("[");
+//        System.out.print("[");
         for (int i = 0; i < arr.length; i++) {
-            System.out.print(i == arr.length - 1 ? arr[i] : arr[i] + ", ");
+            System.out.print(i == arr.length - 1 ? arr[i] : arr[i] + " ");
         }
-        System.out.println("]");
+        System.out.println();
     }
 
     public static void printStringArray(String[] arr) {
@@ -148,5 +136,15 @@ public class ArrayTheme {
             System.out.print(i == arr.length - 1 ? arr[i] : arr[i] + ", ");
         }
         System.out.println("]");
+    }
+
+    public static void printDoubleArray(double[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%.3f ", arr[i]);
+            if (i == 7) {
+                System.out.println();
+            }
+        }
+        System.out.println();
     }
 }
