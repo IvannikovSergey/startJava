@@ -38,7 +38,7 @@ public class ArrayTheme {
         double middleNumber = doubleArray[length / 2];
         for (i = 0; i < length; i++) {
             if (doubleArray[i] > middleNumber) {
-                doubleArray[i] = middleNumber;
+                doubleArray[i] = 0;
                 numberZeroCells++;
             }
         }
