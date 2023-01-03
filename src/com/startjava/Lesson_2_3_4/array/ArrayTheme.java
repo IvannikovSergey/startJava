@@ -8,9 +8,12 @@ public class ArrayTheme {
         int[] intArray = {2, 7, 5, 6, 3, 1, 4};
         int length = intArray.length;
         printIntArray(intArray);
-        for (int i = length - 1; i >= 0; i--) {
-            System.out.print(intArray[i] + " ");
+        for (int i = 0; i < length / 2; i++) {
+            int temp = intArray[i];
+            intArray[i] = intArray[length - i - 1];
+            intArray[length - i - 1] = temp;
         }
+        printIntArray(intArray);
 
         System.out.println("\n№ - 2 Вывод произведения элементов массива");
         intArray = new int[10];
@@ -23,7 +26,7 @@ public class ArrayTheme {
                 continue;
             }
             multDigits *= intArray[i];
-            System.out.print(intArray[i] + (i != 8 ? " * " : " = " + multDigits));
+            System.out.print(intArray[i] + (intArray[i] != 8 ? " * " : " = " + multDigits));
         }
         System.out.print("\n" + intArray[0] + " " + intArray[length - 1] + "\n");
 
@@ -35,10 +38,15 @@ public class ArrayTheme {
             doubleArray[i] = random();
         }
         printDoubleArray(doubleArray);
-        double middleNumber = doubleArray[length / 2];
+        double centerNumber = doubleArray[length / 2];
         for (i = 0; i < length; i++) {
+<<<<<<< HEAD
             if (doubleArray[i] > middleNumber) {
                 doubleArray[i] = 0;
+=======
+            if (doubleArray[i] > centerNumber) {
+                doubleArray[i] = centerNumber;
+>>>>>>> parent of 771994b (исправления)
                 numberZeroCells++;
             }
         }
@@ -46,14 +54,12 @@ public class ArrayTheme {
         System.out.println("\nКоличество обнуленных ячеек: " + numberZeroCells);
 
         System.out.println("\n№ - 4 Вывод элементов массива лесенкой в обратном порядке");
-        char[] engAlphabet = new char[26];
-        length = engAlphabet.length;
-        for (i = 0; i < length; i++) {
-            engAlphabet[i] = (char) ('A' + i);
-        }
-        for (i = length - 1; i >= 0; i--) {
-            for (int j = length - 1; j >= i; j--) {
-                System.out.print(engAlphabet[j]);
+        char[] engLettersArray = new char[26];
+        length = engLettersArray.length;
+        for(i = 0; i < length; i++) {
+            engLettersArray[i] = (char) ('Z' - i);
+            for (int j = 0; j <= i; j++) {
+                System.out.print(engLettersArray[j]);
             }
             System.out.println();
         }
@@ -62,32 +68,27 @@ public class ArrayTheme {
         intArray = new int[30];
         length = intArray.length;
         for (i = 0; i < length; i++) {
-            int randomNumber = 60 + (int) (Math.random() * 40);
-            if (i == 0) {
-                intArray[0] = randomNumber;
-            }
+            intArray[i] = 60 + (int) (Math.random() * 40);
             for (int j = 0; j < i; j++) {
-                if (intArray[j] == randomNumber) {
+                if (intArray[j] == intArray[i]) {
                     i--;
                     break;
                 }
-                intArray[i] = randomNumber;
             }
         }
-        sort(intArray);
+        sorting(intArray);
 
         System.out.println("\n№ - 6 Сдвиг элементов массива");
         String[] srcArray = {"   ", "AA", "", "BBB", "CC", "D", "   ", "E", "FF", "G", ""};
-        length = srcArray.length;
-        int numberNotBlank = 0;
-        for (i = 0; i < length; i++) {
-            if (!srcArray[i].isBlank()) {
-                numberNotBlank++;
+        int numberFullElements = 0;
+        for (String elem : srcArray) {
+            if (!elem.isBlank()) {
+                numberFullElements++;
             }
         }
-        System.out.println("Кол-во не пустых элементов: " + numberNotBlank);
-        String[] destArray = new String[numberNotBlank];
-        int destPos = 0;
+        System.out.println("Кол-во не пустых элементов: " + numberFullElements);
+        String[] destArray = new String[numberFullElements];
+        int n = 0;
         for (i = 0; i < srcArray.length; i++) {
             int sequenceLength = 0;
             int j = i;
@@ -96,14 +97,14 @@ public class ArrayTheme {
                 j++;
             }
             if (sequenceLength != 0) {
-                System.arraycopy(srcArray, i, destArray, destPos++, sequenceLength);
+                System.arraycopy(srcArray, i, destArray, n++, sequenceLength);
             }
         }
         printStringArray(srcArray);
         printStringArray(destArray);
     }
 
-    public static void sort(int[] array) {
+    public static void sorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 if (array[i] > array[j]) {
