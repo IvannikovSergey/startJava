@@ -1,27 +1,40 @@
-package com.startjava.Lesson_2_3.calculator;
+package com.startjava.Lesson_2_3_4.calculator;
 
 import java.util.Scanner;
 
 class CalculatorTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Calculator calculator = new Calculator();
         String answer = "yes";
-
+        
         while (answer.equals("yes")) {
-            Calculator calculator = new Calculator();
-            System.out.println("Введите первое число:");
-            double firstNum = scanner.nextDouble();
-            System.out.println("Введите знак математической операции:");
-            char sign = scanner.next().charAt(0);
-            System.out.println("Введите второе число:");
-            double secondNum = scanner.nextDouble();
-            System.out.println("Результат: " + calculator.calculate(firstNum, secondNum, sign));
-            do {
-                System.out.println("Хотите продолжить? yes/no");
-                scanner.nextLine();
+            System.out.print("Введите математическое выражение: ");
+            String[] mathArray = scanner.nextLine().split(" ");
+
+            double firstNum = Integer.parseInt(mathArray[0]);
+            calculator.setFirstNum(firstNum);
+
+            char sign = mathArray[1].charAt(0);
+            calculator.setMathOperator(sign);
+
+            double secondNum = Integer.parseInt(mathArray[2]);
+            calculator.setSecondNum(secondNum);
+
+            double mathResult = calculator.calculate();
+
+            if (mathResult - Math.floor(mathResult) == 0.0) {
+                System.out.println((int) mathResult);
+            } else {
+                System.out.println(mathResult);
+            }
+            String replay = "Хотите продолжить? yes/no";
+            System.out.println(replay);
+            answer = scanner.nextLine();
+            if (!answer.equals("yes") && !answer.equals("no")) {
+                System.out.println(replay);
                 answer = scanner.nextLine();
             }
-            while (!answer.equals("yes") && !answer.equals("no"));
         }
         scanner.close();
     }
