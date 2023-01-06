@@ -7,35 +7,22 @@ class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         Calculator calculator = new Calculator();
         String answer = "yes";
-        
-        while (answer.equals("yes")) {
-            System.out.print("Введите математическое выражение: ");
-            String[] mathArray = scanner.nextLine().split(" ");
 
-            double firstNum = Integer.parseInt(mathArray[0]);
-            calculator.setFirstNum(firstNum);
-
-            char sign = mathArray[1].charAt(0);
-            calculator.setMathOperator(sign);
-
-            double secondNum = Integer.parseInt(mathArray[2]);
-            calculator.setSecondNum(secondNum);
-
-            double mathResult = calculator.calculate();
-
-            if (mathResult - Math.floor(mathResult) == 0.0) {
-                System.out.println((int) mathResult);
-            } else {
-                System.out.println(mathResult);
+        do {
+            if ("yes".equals(answer)) {
+                System.out.print("Введите математическое выражение: ");
+                String[] mathArray = scanner.nextLine().split(" ");
+                calculator.setMathArray(mathArray);
+                double mathResult = calculator.calculate();
+                if (mathResult % 1 == 0.0) {
+                    System.out.println((int) mathResult);
+                } else {
+                    System.out.println(mathResult);
+                }
             }
-            String replay = "Хотите продолжить? yes/no";
-            System.out.println(replay);
+            System.out.println("Хотите продолжить? yes/no");
             answer = scanner.nextLine();
-            if (!answer.equals("yes") && !answer.equals("no")) {
-                System.out.println(replay);
-                answer = scanner.nextLine();
-            }
-        }
+        } while (!"no".equals(answer));
         scanner.close();
     }
 }

@@ -1,49 +1,30 @@
 package com.startjava.Lesson_2_3_4.calculator;
 
 public class Calculator {
-    private double firstNum;
-    private double secondNum;
-    private char mathOperator;
+    private String[] mathArray;
 
-    public double setFirstNum(double firstNum) {
-        this.firstNum = firstNum;
-        return firstNum;
-    }
-
-    public double setSecondNum(double secondNum) {
-        this.secondNum = secondNum;
-        return secondNum;
-    }
-
-    public char setMathOperator(char mathOperator) {
-        this.mathOperator = mathOperator;
-        return mathOperator;
+    public void setMathArray(String[] mathArray) {
+        this.mathArray = mathArray;
     }
 
     public double calculate() {
-        switch (mathOperator) {
-            case '+' -> {
-                return firstNum + secondNum;
-            }
-            case '-' -> {
-                return firstNum - secondNum;
-            }
-            case '*' -> {
-                return firstNum * secondNum;
-            }
+        double num1 = Integer.parseInt(mathArray[0]);
+        char mathOperator = mathArray[1].charAt(0);
+        double num2 = Integer.parseInt(mathArray[2]);
+
+        return switch (mathOperator) {
+            case '+' -> num1 + num2;
+            case '-' -> num1 - num2;
+            case '*' -> num1 * num2;
             case '/' -> {
-                if (secondNum == 0) {
+                if (num2 == 0) {
                     System.out.println("Деление на ноль невозможно");
                 }
+                yield num1 / num2;
             }
-            case '^' -> {
-                return Math.pow(firstNum, secondNum);
-            }
-            case '%' -> {
-                return firstNum % secondNum;
-            }
-            default -> System.out.println("Неправильный знак операции");
-        }
-        return .0;
+            case '^' -> Math.pow(num1, num2);
+            case '%' -> num1 % num2;
+            default -> throw new NumberFormatException("Неправильный знак операции");
+        };
     }
 }
