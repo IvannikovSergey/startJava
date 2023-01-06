@@ -1,29 +1,48 @@
-package com.startjava.Lesson_2_3.calculator;
+package com.startjava.Lesson_2_3_4.calculator;
 
 public class Calculator {
-    public double calculate(double num1, double num2, char operator) {
-        switch (operator) {
-            case '+':
-                return num1 + num2;
-            case '-':
-                return num1 - num2;
-            case '*':
-                return num1 * num2;
-            case '/':
-                if (num2 == 0) {
+    private double firstNum;
+    private double secondNum;
+    private char mathOperator;
+
+    public double setFirstNum(double firstNum) {
+        this.firstNum = firstNum;
+        return firstNum;
+    }
+
+    public double setSecondNum(double secondNum) {
+        this.secondNum = secondNum;
+        return secondNum;
+    }
+
+    public char setMathOperator(char mathOperator) {
+        this.mathOperator = mathOperator;
+        return mathOperator;
+    }
+
+    public double calculate() {
+        switch (mathOperator) {
+            case '+' -> {
+                return firstNum + secondNum;
+            }
+            case '-' -> {
+                return firstNum - secondNum;
+            }
+            case '*' -> {
+                return firstNum * secondNum;
+            }
+            case '/' -> {
+                if (secondNum == 0) {
                     System.out.println("Деление на ноль невозможно");
                 }
-                return num1 / num2;
-            case '^':
-                double result = 1;
-                for (int i = 1; i <= num2; i++) {
-                    result *= num1;
-                }
-                return result;
-            case '%':
-                return num1 % num2;
-            default:
-                System.out.println("Неправильный знак операции");
+            }
+            case '^' -> {
+                return Math.pow(firstNum, secondNum);
+            }
+            case '%' -> {
+                return firstNum % secondNum;
+            }
+            default -> System.out.println("Неправильный знак операции");
         }
         return .0;
     }
