@@ -1,13 +1,7 @@
 package com.startjava.Lesson_2_3_4.calculator;
 
 public class Calculator {
-    private String[] mathArray;
-
-    public void setMathArray(String[] mathArray) {
-        this.mathArray = mathArray;
-    }
-
-    public double calculate() {
+    public double calculate(String[] mathArray) {
         double num1 = Integer.parseInt(mathArray[0]);
         char mathOperator = mathArray[1].charAt(0);
         double num2 = Integer.parseInt(mathArray[2]);

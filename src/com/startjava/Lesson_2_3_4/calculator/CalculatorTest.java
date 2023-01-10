@@ -12,8 +12,7 @@ class CalculatorTest {
             if ("yes".equals(answer)) {
                 System.out.print("Введите математическое выражение: ");
                 String[] mathArray = scanner.nextLine().split(" ");
-                calculator.setMathArray(mathArray);
-                double mathResult = calculator.calculate();
+                double mathResult = calculator.calculate(mathArray);
                 if (mathResult % 1 == 0.0) {
                     System.out.println((int) mathResult);
                 } else {
