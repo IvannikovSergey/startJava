@@ -11,8 +11,8 @@ class CalculatorTest {
         do {
             if ("yes".equals(answer)) {
                 System.out.print("Введите математическое выражение: ");
-                String[] mathArray = scanner.nextLine().split(" ");
-                double mathResult = calculator.calculate(mathArray);
+                String input = scanner.nextLine();
+                double mathResult = calculator.calculate(input);
                 if (mathResult % 1 == 0.0) {
                     System.out.println((int) mathResult);
                 } else {

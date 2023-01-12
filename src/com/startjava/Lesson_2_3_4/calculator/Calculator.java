@@ -1,10 +1,11 @@
 package com.startjava.Lesson_2_3_4.calculator;
 
 public class Calculator {
-    public double calculate(String[] mathArray) {
-        double num1 = Integer.parseInt(mathArray[0]);
-        char mathOperator = mathArray[1].charAt(0);
-        double num2 = Integer.parseInt(mathArray[2]);
+    public double calculate(String input) {
+        String[] expression = input.split(" ");
+        double num1 = Integer.parseInt(expression[0]);
+        char mathOperator = expression[1].charAt(0);
+        double num2 = Integer.parseInt(expression[2]);
 
         return switch (mathOperator) {
             case '+' -> num1 + num2;
