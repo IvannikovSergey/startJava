@@ -1,13 +1,13 @@
-// package com.startjava.Lesson_2_3_4.guess;
+package com.startjava.Lesson_2_3_4.guess;
 
 import java.util.Scanner;
 
 class GuessNumberTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Имя первого игрока: ");
+        System.out.println("Имя первого игрока: ");
         Player player1 = new Player(scanner.nextLine());
-        System.out.print("Имя второго игрока: ");
+        System.out.println("Имя второго игрока: ");
         Player player2 = new Player(scanner.nextLine());
 
         GuessNumber game = new GuessNumber(player1, player2);
