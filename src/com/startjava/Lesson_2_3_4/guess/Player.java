@@ -3,7 +3,7 @@ package com.startjava.Lesson_2_3_4.guess;
 public class Player {
     private String name;
     private int tries;
-    private int[] attempts = new int[3];
+    private int[] attempts = new int[10];
 
     public Player(String name) {
         this.name = name;
@@ -21,15 +21,19 @@ public class Player {
         this.tries = tries;
     }
 
-    public int[] getAttempts(int length) {
-        return Arrays.copyOf(attempts, length);
+    public int[] getAttempts() {
+        return Arrays.copyOf(attempts, tries);
     }
 
-    public void setAttempt(int index, int number) {
-            attempts[index] = number;
+    public void setAttempt(int number) {
+        attempts[tries] = number;
     }
 
-    public void fill(int number) {
-        Arrays.fill(attempts , number);
+    public void fill() {
+        Arrays.fill(attempts, 0);
+    }
+
+    public int compareAttempts() {
+        return attempts[tries - 1];
     }
 }
