@@ -14,7 +14,7 @@ class GuessNumberTest {
                 case 2 -> position = "третьего";
             }
             System.out.println("Имя " + position + " игрока: ");
-            players[i] = new Player("p" + (i + 1));
+            players[i] = new Player(scanner.nextLine());
         }
 
         GuessNumber game = new GuessNumber(players);

@@ -25,15 +25,17 @@ public class Player {
         return Arrays.copyOf(attempts, tries);
     }
 
-    public void setAttempt(int number) {
-        attempts[tries] = number;
+    public void addAttempt(int number) {
+        if (number > 0 && number <= 100) {
+            attempts[tries - 1] = number;
+        }
     }
 
     public void fill() {
-        Arrays.fill(attempts, 0);
+        Arrays.fill(attempts, 0, tries, 0);
     }
 
-    public int compareAttempts() {
+    public int returnPlayerAttempt() {
         return attempts[tries - 1];
     }
 }

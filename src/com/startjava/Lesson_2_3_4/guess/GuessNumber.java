@@ -21,8 +21,8 @@ public class GuessNumber {
         while (attemptsLimit != 0) {
             boolean isWin = false;
             for (Player player : players) {
-                inputAttempt(player);
                 player.setTries(player.getTries() + 1);
+                inputAttempt(player);
                 if (compareNumbers(player, secretNumber)) {
                     isWin = true;
                     break;
@@ -36,42 +36,42 @@ public class GuessNumber {
                 break;
             }
         }
-        for (Player player : players) {
-            System.out.print("Введенные числа игрока " + player.getName() + " являются: ");
-            printPlayerAttempts((player.getAttempts()));
-            System.out.println();
-        }
+        summary();
     }
 
     private void inputAttempt(Player player) {
-        System.out.print(player.getName() + " введите число : ");
+        System.out.print("Игрок " + player.getName() + " введите число : ");
         int playerNumber;
         while (true) {
             playerNumber = scanner.nextInt();
-            if (playerNumber > 0 && playerNumber <= 100) {
+            player.addAttempt(playerNumber);
+            if (player.returnPlayerAttempt() != 0) {
                 break;
             }
-            System.out.println(player.getName() + " введите число в интервале от 0 до 100 включительно: ");
+            System.out.println("Число должно быть в диапазоне от 0 до 100 включительно!!!");
+            System.out.print("Игрок " + player.getName() + " введите число еще раз: ");
         }
-        player.setAttempt(playerNumber);
     }
 
     private boolean compareNumbers(Player player, int secretNumber) {
-        if (player.compareAttempts() == secretNumber) {
+        if (player.returnPlayerAttempt() == secretNumber) {
             System.out.println("Игрок " + player.getName() + " угадал число " + secretNumber +
                     " с " + (player.getTries()) + " попытки");
             return true;
         }
         System.out.println(player.getName() + ", число " +
-                (player.compareAttempts() > secretNumber ? " больше " : " меньше ") +
-                "того," +
-                " что загадал компьютер");
+                (player.returnPlayerAttempt() > secretNumber ? " больше " : " меньше ") +
+                "того, что загадал компьютер");
         return false;
     }
 
-    private void printPlayerAttempts(int[] attempts) {
-        for (int attempt : attempts) {
-            System.out.printf("%-2d ", attempt);
+    private void summary() {
+        for (Player player : players) {
+            System.out.print("Введенные числа игрока " + player.getName() + " являются: ");
+            for (int attempt : player.getAttempts()) {
+                System.out.printf("%-2d ", attempt);
+            }
+            System.out.println();
         }
     }
 }
