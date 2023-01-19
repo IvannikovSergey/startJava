@@ -6,7 +6,7 @@ public class GuessNumber {
     private Player[] players;
     Scanner scanner = new Scanner(System.in);
 
-    public GuessNumber(Player[] players) {
+    public GuessNumber(Player... players) {
         this.players = players;
     }
 
@@ -36,16 +36,14 @@ public class GuessNumber {
                 break;
             }
         }
-        summary();
+        printPlayersAttempts();
     }
 
     private void inputAttempt(Player player) {
         System.out.print("Игрок " + player.getName() + " введите число : ");
-        int playerNumber;
         while (true) {
-            playerNumber = scanner.nextInt();
-            player.addAttempt(playerNumber);
-            if (player.returnPlayerAttempt() != 0) {
+            int playerNumber = scanner.nextInt();
+            if (player.addAttempt(playerNumber)) {
                 break;
             }
             System.out.println("Число должно быть в диапазоне от 0 до 100 включительно!!!");
@@ -54,18 +52,18 @@ public class GuessNumber {
     }
 
     private boolean compareNumbers(Player player, int secretNumber) {
-        if (player.returnPlayerAttempt() == secretNumber) {
+        if (player.getAttempt() == secretNumber) {
             System.out.println("Игрок " + player.getName() + " угадал число " + secretNumber +
                     " с " + (player.getTries()) + " попытки");
             return true;
         }
         System.out.println(player.getName() + ", число " +
-                (player.returnPlayerAttempt() > secretNumber ? " больше " : " меньше ") +
+                (player.getAttempt() > secretNumber ? " больше " : " меньше ") +
                 "того, что загадал компьютер");
         return false;
     }
 
-    private void summary() {
+    private void printPlayersAttempts() {
         for (Player player : players) {
             System.out.print("Введенные числа игрока " + player.getName() + " являются: ");
             for (int attempt : player.getAttempts()) {
