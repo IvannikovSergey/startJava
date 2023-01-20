@@ -13,8 +13,8 @@ class GuessNumberTest {
                 case 2 -> position = "третьего";
                 default -> throw new IllegalStateException("Unexpected value: " + i);
             };
-            System.out.print("Имя " + position + " игрока: ");
-            players[i] = new Player(scanner.nextLine());
+            System.out.println("Имя " + position + " игрока: ");
+            players[i] = new Player("p" + (i + 1));
         }
 
         GuessNumber game = new GuessNumber(players);
