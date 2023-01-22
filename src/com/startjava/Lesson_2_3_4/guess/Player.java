@@ -5,6 +5,8 @@ public class Player {
     private int tries;
     private int[] attempts = new int[10];
 
+    private int wins;
+
     public Player(String name) {
         this.name = name;
     }
@@ -31,6 +33,14 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 
     public void fill() {

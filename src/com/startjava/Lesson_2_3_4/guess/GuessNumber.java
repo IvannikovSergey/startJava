@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 public class GuessNumber {
     private Player[] players;
-    private String[] winners = new String[3];
     Scanner scanner = new Scanner(System.in);
-
     private int round;
 
     public GuessNumber(Player... players) {
@@ -46,7 +44,7 @@ public class GuessNumber {
             printPlayersAttempts();
             round++;
         }
-        getWinner(winners);
+        winner(players);
     }
 
     private void inputAttempt(Player player) {
@@ -65,8 +63,7 @@ public class GuessNumber {
         if (player.getAttempt() == secretNumber) {
             System.out.println("Игрок " + player.getName() + " угадал число " + secretNumber +
                     " с " + (player.getTries()) + " попытки");
-            System.out.println("В раунде №" + round + " выиграл игрок с именем " + player.getName());
-            winners[round - 1] = player.getName();
+            player.setWins(player.getWins() + 1);
             return true;
         }
         System.out.println(player.getName() + ", число " +
@@ -85,43 +82,16 @@ public class GuessNumber {
         }
     }
 
-    private void getWinner(String[] winners) {
-        String[] uniqueWinners = new String[winners.length];
-        int[] countsWin = new int[winners.length];
-        int count = 0;
-        for (int i = 0; i < winners.length; i++) {
-            String winner = winners[i];
-            boolean exists = false;
-            for (int j = 0; j < count; j++) {
-                if (uniqueWinners[j].equals(winner)) {
-                    exists = true;
-                    break;
-                }
-            }
-            if (!exists) {
-                int someNumber = 1;
-                for (int j = i + 1; j < winners.length; j++) {
-                    if (winner.equals(winners[j])) {
-                        someNumber++;
-                    }
-                }
-                uniqueWinners[count] = winner;
-                countsWin[count] = someNumber;
-                count++;
+    private void winner(Player[] arr) {
+        int maxWins = 0;
+        int winnerIndex = 0;
+        for (int i = 0; i < arr.length; i++) {
+            maxWins = arr[0].getWins();
+            if(arr[i].getWins() > maxWins ) {
+                maxWins = arr[i].getWins();
+                winnerIndex = i;
             }
         }
-        int maxNumber = -1;
-        int maxIndex = 0;
-        boolean drow = false;
-        for (int i = 0; i < countsWin.length; i++) {
-            if (maxNumber <= countsWin[i]) {
-                maxNumber = countsWin[i];
-                maxIndex = i;
-            }
-            if (countsWin[i] == maxNumber) {
-                drow = true;
-            }
-        }
-        System.out.println(drow ? "Ничья!!!" : "Победил игрок с именем: " + uniqueWinners[maxIndex]);
+        System.out.println("Победитель: " + arr[winnerIndex].getName());
     }
 }

@@ -3,6 +3,8 @@ package com.startjava.Lesson_2_3_4.guess;
 import java.util.Scanner;
 
 class GuessNumberTest {
+    private static final int ATTEMPTS_LIMIT = 10;
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Player[] players = new Player[3];
@@ -21,7 +23,7 @@ class GuessNumberTest {
         String answer = "yes";
         do {
             if ("yes".equals(answer)) {
-                game.start(10);
+                game.start(ATTEMPTS_LIMIT);
             }
             System.out.println("\nХотите продолжить? yes/no");
             answer = scanner.nextLine();
