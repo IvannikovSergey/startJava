@@ -3,8 +3,8 @@ package com.startjava.Lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumber {
-    private Player[] players;
-    Scanner scanner = new Scanner(System.in);
+    private final Player[] players;
+    private static final Scanner scanner = new Scanner(System.in);
     private int round;
 
     public GuessNumber(Player... players) {
@@ -44,7 +44,7 @@ public class GuessNumber {
             printPlayersAttempts();
             round++;
         }
-        winner(players);
+        chooseWinner();
     }
 
     private void inputAttempt(Player player) {
@@ -82,16 +82,16 @@ public class GuessNumber {
         }
     }
 
-    private void winner(Player[] arr) {
+    private void chooseWinner() {
         int maxWins = 0;
         int winnerIndex = 0;
-        for (int i = 0; i < arr.length; i++) {
-            maxWins = arr[0].getWins();
-            if(arr[i].getWins() > maxWins ) {
-                maxWins = arr[i].getWins();
+        for (int i = 0; i < players.length; i++) {
+            maxWins = players[0].getWins();
+            if (players[i].getWins() > maxWins) {
+                maxWins = players[i].getWins();
                 winnerIndex = i;
             }
         }
-        System.out.println("Победитель: " + arr[winnerIndex].getName());
+        System.out.println("Победитель: " + players[winnerIndex].getName());
     }
 }
