@@ -1,19 +1,19 @@
 import java.util.Arrays;
 
 public class BookShelf {
-    private int size;
-    private Book[] books = new Book[10];
+    private int countBooks;
+    private static final Book[] books = new Book[10];
 
-    public void setSize(int size) {
-        this.size = size;
+    public int getCountBooks() {
+        return countBooks;
     }
 
-    public void addBook(Book book) {
-        books[size] = book;
+    public void add(Book book) {
+        books[countBooks] = book;
+        countBooks++;
     }
 
-    public void deleteBook(String title) {
-        Book[] destArr = new Book[books.length];
+    public void delete(String title) {
         int index = 0;
         for (int i = 0; i < books.length; i++) {
             if (books[i].getTitle().equals(title)) {
@@ -22,14 +22,12 @@ public class BookShelf {
             }
         }
         int remainingElements = books.length - (index + 1);
-        System.arraycopy(books, 0, destArr, 0, index);
-        System.arraycopy(books, index + 1, destArr, index, remainingElements);
-        books = destArr;
-        setSize(getAmountOfBooks() - 1);
+        System.arraycopy(books, index + 1, books, index, remainingElements);
+        countBooks--;
         System.out.println("Книга удалена");
     }
 
-    Book findBook(String title) throws NullPointerException {
+    Book find(String title) {
         for (Book book : books) {
             if (book.getTitle().equals(title)) {
                 return book;
@@ -39,20 +37,16 @@ public class BookShelf {
     }
 
     public void clearShelf() {
-        Arrays.fill(books, 0, size, null);
-        size = 0;
+        Arrays.fill(books, 0, countBooks, null);
+        countBooks = 0;
         System.out.println("Шкаф очищен");
     }
 
-    public Book[] getAllBooks() {
-        return Arrays.copyOf(books, size);
-    }
-
-    public int getAmountOfBooks() {
-        return size;
+    public Book[] getAll() {
+        return Arrays.copyOf(books, countBooks);
     }
 
     public int getAmountEmptyShelves() {
-        return 10 - getAmountOfBooks();
+        return 10 - getCountBooks();
     }
 }
