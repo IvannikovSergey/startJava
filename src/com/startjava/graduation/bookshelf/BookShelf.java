@@ -2,15 +2,9 @@ import java.util.Arrays;
 
 public class BookShelf {
     private int countBooks;
-<<<<<<< HEAD
-    private static final Book[] books = new Book[10];
-
-=======
     private final int SHELF_CAPACITY = 10;
     private final Book[] books = new Book[SHELF_CAPACITY];
 
-
->>>>>>> fd9dd47 (исправления)
     public int getCountBooks() {
         return countBooks;
     }
@@ -33,23 +27,11 @@ public class BookShelf {
                 return;
             }
         }
-<<<<<<< HEAD
-        int remainingElements = books.length - (index + 1);
-        System.arraycopy(books, index + 1, books, index, remainingElements);
-        countBooks--;
-        System.out.println("Книга удалена");
-    }
-
-    Book find(String title) {
-        for (Book book : books) {
-=======
         System.out.println("Нет такой книги для удаления");
     }
 
-
     Book find(String title) {
         for (Book book : getAll()) {
->>>>>>> fd9dd47 (исправления)
             if (book.getTitle().equals(title)) {
                 return book;
             }
@@ -68,10 +50,6 @@ public class BookShelf {
     }
 
     public int getAmountEmptyShelves() {
-<<<<<<< HEAD
-        return 10 - getCountBooks();
-=======
         return SHELF_CAPACITY - getCountBooks();
->>>>>>> fd9dd47 (исправления)
     }
 }
