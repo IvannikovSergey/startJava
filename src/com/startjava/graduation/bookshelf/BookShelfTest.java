@@ -127,16 +127,19 @@ public class BookShelfTest {
     private static void printAll() {
         Book[] allBooks = BOOK_SHELF.getAll();
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.printf("В шкафу %s книг/и и свободно %s полок/полки%n", BOOK_SHELF.getCountBooks(),
 =======
         System.out.printf("В шкафу %s книг/и и свободно %s полок/полки%n",
             BOOK_SHELF.getCountBooks(),
 >>>>>>> fd9dd47 (исправления)
+=======
+        System.out.printf("В шкафу %s книг/и и свободно %s полок/полки%n", BOOK_SHELF.getCountBooks(),
+>>>>>>> 4ad4ba3 (исправления)
                 BOOK_SHELF.getAmountEmptyShelves());
         for (Book books : allBooks) {
             String word = " ";
-            System.out.println("|" + books + 
-                word.repeat(shelfLength() - books.getBookInfoLength()) + "|");
+            System.out.println("|" + books + word.repeat(shelfLength() - books.getBookInfoLength()) + "|");
             word = "-";
             System.out.println("|--" + word.repeat(shelfLength()) + "--|");
         }
