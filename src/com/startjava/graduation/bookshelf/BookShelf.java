@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class BookShelf {
     private int countBooks;
-    private final int SHELF_CAPACITY = 10;
+    private static final int SHELF_CAPACITY = 10;
     private final Book[] books = new Book[SHELF_CAPACITY];
 
     public int getCountBooks() {
@@ -15,14 +15,10 @@ public class BookShelf {
     }
 
     public void delete(String title) {
-        int index = 0;
-        int length = getAll().length;
-        for (int i = 0; i < length; i++) {
+        countBooks--;
+        for (int i = 0; i < countBooks + 1; i++) {
             if (books[i].getTitle().equals(title)) {
-                index = i;
-                int remainingElements = length - (index + 1);
-                System.arraycopy(books, index + 1, books, index, remainingElements);
-                countBooks--;
+                System.arraycopy(books, i + 1, books, i, countBooks);
                 System.out.println("Книга удалена");
                 return;
             }
@@ -30,10 +26,10 @@ public class BookShelf {
         System.out.println("Нет такой книги для удаления");
     }
 
-    Book find(String title) {
-        for (Book book : getAll()) {
-            if (book.getTitle().equals(title)) {
-                return book;
+    public Book find(String title) {
+        for (int i = 0; i < countBooks; i++) {
+            if(books[i].getTitle().equals(title)) {
+                return books[i];
             }
         }
         return null;
