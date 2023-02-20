@@ -4,6 +4,7 @@ public class BookShelf {
     private int countBooks;
     private static final int SHELF_CAPACITY = 10;
     private final Book[] books = new Book[SHELF_CAPACITY];
+    private int bookMaxLengthInfo;
 
     public int getCountBooks() {
         return countBooks;
@@ -11,14 +12,19 @@ public class BookShelf {
 
     public void add(Book book) {
         books[countBooks] = book;
+        calculateBookMaxLengthInfo(book);
         countBooks++;
     }
 
     public void delete(String title) {
-        countBooks--;
-        for (int i = 0; i < countBooks + 1; i++) {
+        for (int i = 0; i < countBooks; i++) {
             if (books[i].getTitle().equals(title)) {
-                System.arraycopy(books, i + 1, books, i, countBooks);
+                int length = books[i].toString().length();
+                countBooks--;
+                System.arraycopy(books, i + 1, books, i, countBooks - i);
+                if(length == bookMaxLengthInfo) {
+                    calculateBookMaxLengthInfo(books[i]);
+                }
                 System.out.println("Книга удалена");
                 return;
             }
@@ -35,6 +41,10 @@ public class BookShelf {
         return null;
     }
 
+    public int getBookMaxLengthInfo() {
+        return bookMaxLengthInfo;
+    }
+
     public void clearShelf() {
         Arrays.fill(books, 0, countBooks, null);
         countBooks = 0;
@@ -47,5 +57,12 @@ public class BookShelf {
 
     public int getAmountEmptyShelves() {
         return SHELF_CAPACITY - getCountBooks();
+    }
+
+    public void calculateBookMaxLengthInfo(Book book) {
+        int length = book.toString().length();
+        if (length > bookMaxLengthInfo) {
+            bookMaxLengthInfo = length;
+        }
     }
 }

@@ -1,23 +1,24 @@
 import java.util.Scanner;
 
 public class BookShelfTest {
-    private static final BookShelf BOOK_SHELF = new BookShelf();
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final BookShelf bookShelf = new BookShelf();
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println("Шкаф пуст, Вы можете добавить в него первую книгу");
         addNewBook();
         while (true) {
             System.out.println("Для продолжения нажмите Enter");
-            SCANNER.nextLine();
+            scanner.nextLine();
             printAll();
-            display();
+            displayMenu();
             int position = 0;
             try {
-                position = Integer.parseInt(SCANNER.nextLine());
+                position = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException ex) {
+                ex.getMessage();
             }
-            if (!select(position)) {
+            if (!selectAction(position)) {
                 return;
             }
         }
@@ -25,12 +26,12 @@ public class BookShelfTest {
 
     private static void addNewBook() {
         try {
-            if (BOOK_SHELF.getAmountEmptyShelves() != 0) {
-                String author = SCANNER.nextLine();
-                String title = SCANNER.nextLine();
-                String date = SCANNER.nextLine();
-                Book book = new Book(author, title, date);
-                BOOK_SHELF.add(book);
+            if (bookShelf.getAmountEmptyShelves() != 0) {
+                String author = scanner.nextLine();
+                String title = scanner.nextLine();
+                String publishYear = scanner.nextLine();
+                Book book = new Book(author, title, publishYear);
+                bookShelf.add(book);
                 System.out.println("Книга добавлена");
             } else {
                 System.out.println("В шкафу нет места");
@@ -40,31 +41,19 @@ public class BookShelfTest {
         }
     }
 
-    private static int shelfLength() {
-        int maxLength = 0;
-        for (int i = 0; i < BOOK_SHELF.getAll().length; i++) {
-            int bookInfoLength = BOOK_SHELF.getAll()[i].getBookInfoLength();
-            if (bookInfoLength > maxLength) {
-                maxLength = bookInfoLength;
-            }
-        }
-        return maxLength;
-    }
-
     private static void printAll() {
-        Book[] allBooks = BOOK_SHELF.getAll();
-        System.out.printf("В шкафу %s книг/и и свободно %s полок/полки%n", BOOK_SHELF.getCountBooks(),
-                BOOK_SHELF.getAmountEmptyShelves());
-        for (Book books : allBooks) {
-            String word = " ";
-            System.out.println("|" + books + word.repeat(shelfLength() - books.getBookInfoLength()) + "|");
-            word = "-";
-            System.out.println("|--" + word.repeat(shelfLength()) + "--|");
+        System.out.printf("В шкафу %s книг/и и свободно %s полок/полки%n",
+         bookShelf.getCountBooks(),bookShelf.getAmountEmptyShelves());
+        int maxLengthInfo = bookShelf.getBookMaxLengthInfo();
+        for (Book book : bookShelf.getAll()) {
+            System.out.println("|" + book + " ".repeat(maxLengthInfo - book.getBookInfoLength()) +
+             "|");
+            System.out.println("|" + "-".repeat(maxLengthInfo) + "|");
         }
         System.out.println();
     }
 
-    private static void display() {
+    private static void displayMenu() {
         System.out.println("""
                 1. Добавить книгу <Автор><Название><Год>
                 2. Удалить книгу <Название>
@@ -74,37 +63,33 @@ public class BookShelfTest {
                 """);
     }
 
-    private static boolean select(int position) {
+    private static boolean selectAction(int position) {
         String title;
         switch (position) {
-            case 1 -> {
-                addNewBook();
-            }
+            case 1 -> addNewBook();
             case 2 -> {
-                if (BOOK_SHELF.getCountBooks() != 0) {
-                    title = SCANNER.nextLine();
-                    BOOK_SHELF.delete(title);
+                if (bookShelf.getCountBooks() != 0) {
+                    title = scanner.nextLine();
+                    bookShelf.delete(title);
                 } else {
                     System.out.println("Шкаф пуст");
                 }
             }
             case 3 -> {
-                title = SCANNER.nextLine();
-                if (BOOK_SHELF.find(title) != null) {
-                    System.out.println("Книга найдена \n" + BOOK_SHELF.find(title));
+                title = scanner.nextLine();
+                if (bookShelf.find(title) != null) {
+                    System.out.println("Книга найдена \n" + bookShelf.find(title));
                 } else {
                     System.out.println("Книга не найдена");
                 }
             }
-            case 4 -> {
-                BOOK_SHELF.clearShelf();
-            }
+            case 4 -> bookShelf.clearShelf();
             case 5 -> {
                 return false;
             }
             default -> {
                 System.out.println("Неверное действие\nДля продолжения нажмите Enter");
-                SCANNER.nextLine();
+                scanner.nextLine();
             }
         }
         return true;

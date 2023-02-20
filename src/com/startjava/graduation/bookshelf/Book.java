@@ -1,14 +1,14 @@
 public class Book {
     private final String author;
     private final String title;
-    private final int publishYear;
+    private final String publishYear;
     private int bookInfoLength;
 
     public Book(String title, String author, String publishYear) {
         this.author = author;
         this.title = title;
-        this.publishYear = Integer.parseInt(publishYear);
-        this.bookInfoLength = author.length() + title.length() + publishYear.length();
+        this.publishYear = publishYear;
+        this.bookInfoLength = toString().length();
     }
 
     public String getTitle() {
